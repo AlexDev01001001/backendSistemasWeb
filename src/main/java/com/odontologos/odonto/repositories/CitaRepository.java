@@ -21,19 +21,22 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
            "WHERE c.paciente.idPaciente = :idPaciente")
     List<CitaDetalleDTO> obtenerCitasDetalladasPorPaciente(@Param("idPaciente") Integer idPaciente);
 
+
     @Query("SELECT new com.odontologos.odonto.DTO.CitaDetalleDTO(" +
-        "c.id, " +
-        "CONCAT(o.nombres, ' ', o.apellidos), " +
-        "s.descripcion, " +
-        "t.descripcion, " +
-        "c.fechaCita, " +
-        "c.hora, " +
-        "c.estado) " +
-        "FROM Cita c " +
-        "JOIN c.odontologo o " +
-        "JOIN c.seguimiento s " +
-        "JOIN c.tratamiento t " +
-        "WHERE o.id = :idOdontologo")
+       "c.id, " +
+       "CONCAT(o.nombres, ' ', o.apellidos), " +
+       "s.descripcion, " +
+       "t.descripcion, " +
+       "c.fechaCita, " +
+       "c.hora, " +
+       "c.estado, " +
+       "CONCAT(p.nombres, ' ', p.apellidos)) " +
+       "FROM Cita c " +
+       "JOIN c.odontologo o " +
+       "JOIN c.paciente p " +
+       "JOIN c.tratamiento t " +
+       "JOIN c.seguimiento s " +
+       "WHERE o.id = :idOdontologo")
     List<CitaDetalleDTO> obtenerCitasPorOdontologo(@Param("idOdontologo") Integer idOdontologo);
 
 }

@@ -35,10 +35,6 @@ import com.odontologos.odonto.DTO.CitaDTO;
 
 public class CitaController {
 
-    /*private final CitaRepository citaRepository;
-    @Autowired
-    private CitaService citaService;*/
-
     @Autowired private CitaRepository citaRepository;
     @Autowired private CitaService citaService;
 
@@ -79,6 +75,19 @@ public class CitaController {
         }
     }
 
+        /* COMPLETAR UNA CITA */
+        @PutMapping("/citas/{id}/atendida")
+        public ResponseEntity<?> marcarCitaComoAtendida(@PathVariable Integer id) {
+            Optional<Cita> optCita = citaRepository.findById(id);
+            if (optCita.isPresent()) {
+                Cita cita = optCita.get();
+                cita.setEstado(2); // Estado 2 = Atendida
+                citaRepository.save(cita);
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        }
 
 
         /* REGISTRO DE CITAS */

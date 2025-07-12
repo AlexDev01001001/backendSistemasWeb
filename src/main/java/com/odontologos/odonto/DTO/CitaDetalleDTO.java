@@ -11,6 +11,8 @@ public class CitaDetalleDTO {
     private Date fechaCita;
     private Time hora;
     private Integer estado;
+    private String pacienteNombre;
+    
 
     public CitaDetalleDTO(Integer idCita, String odontologoNombre, String seguimientoDescripcion,
                           String tratamientoDescripcion, Date fechaCita, Time hora, Integer estado) {
@@ -21,6 +23,20 @@ public class CitaDetalleDTO {
         this.fechaCita = fechaCita;
         this.hora = hora;
         this.estado = estado;
+        
+    }
+
+    public CitaDetalleDTO(Integer idCita, String odontologoNombre, String seguimientoDescripcion,
+                        String tratamientoDescripcion, Date fechaCita, Time hora,
+                        Integer estado, String pacienteNombre) {
+        this.idCita = idCita;
+        this.odontologoNombre = odontologoNombre;
+        this.seguimientoDescripcion = seguimientoDescripcion;
+        this.tratamientoDescripcion = tratamientoDescripcion;
+        this.fechaCita = fechaCita;
+        this.hora = hora;
+        this.estado = estado;
+        this.pacienteNombre = pacienteNombre;
     }
 
     public Integer getIdCita() {
@@ -78,6 +94,15 @@ public class CitaDetalleDTO {
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
+
+    public String getPacienteNombre() {
+        return pacienteNombre;
+    }
+
+    public void setPacienteNombre(String pacienteNombre) {
+        this.pacienteNombre = pacienteNombre;
+    }
+
 
     
 }
